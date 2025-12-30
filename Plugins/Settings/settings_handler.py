@@ -151,10 +151,14 @@ async def settings_input_listener(client, message):
         elif state == "waiting_interval":
             try:
                 val = int(message.text)
+                if not (60 <= val <= 3600):
+                    await message.reply("❌ value out of range (60-3600).")
+                    return
+
                 if await Seishiro.set_check_interval(val):
                     await message.reply(get_styled_text(f"✅ Check Interval Set: {val}s"), parse_mode=enums.ParseMode.HTML)
                 else:
-                    await message.reply("❌ value out of range (60-3600).")
+                    await message.reply("❌ error setting interval.")
             except ValueError:
                 await message.reply("❌ invalid number.")
 

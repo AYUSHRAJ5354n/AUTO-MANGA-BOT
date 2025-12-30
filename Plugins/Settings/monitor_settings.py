@@ -43,7 +43,7 @@ async def set_interval_menu(client, callback_query):
     ]
     
     await edit_msg_with_pic(
-        Message=callback_query.message,
+        message=callback_query.message,
         text=text,
         buttons=InlineKeyboardMarkup(buttons)
     )

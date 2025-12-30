@@ -85,7 +85,7 @@ async def search_command_handler(client, message):
     await message.reply(
         f"<b>🔍 search:</b> <code>{query}</code>\n\nselect a source to search in:",
         reply_markup=InlineKeyboardMarkup(buttons),
-        parse_mode=enums.ParseMode.html
+        parse_mode=enums.ParseMode.HTML
     )
 
 
@@ -119,7 +119,7 @@ async def search_source_cb(client, callback_query):
     await status_msg.edit_text(
         f"<b>found {len(results)} results in {source}:</b>",
         reply_markup=InlineKeyboardMarkup(buttons),
-        parse_mode=enums.ParseMode.html
+        parse_mode=enums.ParseMode.HTML
     )
 
 
@@ -345,17 +345,17 @@ async def execute_download(client, target_chat_id, source, manga_id, chapter_id,
             await status_msg.edit_text(f"❌ no images in chapter {meta.get('chapter', '?')}")
             return
             
-        chapter_dir = path(Config.download_dir) / f"{source}_{manga_id}" / f"ch_{meta['chapter']}"
+        chapter_dir = Path(Config.DOWNLOAD_DIR) / f"{source}_{manga_id}" / f"ch_{meta['chapter']}"
         chapter_dir.mkdir(parents=True, exist_ok=True)
         
-        await status_msg.edit_text(f"<i>⬇ downloading {len(images)} pages...</i>", parse_mode=enums.ParseMode.html)
+        await status_msg.edit_text(f"<i>⬇ downloading {len(images)} pages...</i>", parse_mode=enums.ParseMode.HTML)
         
-        async with downloader(Config) as downloader:
+        async with Downloader(Config) as downloader:
             if not await downloader.download_images(images, chapter_dir):
                  await status_msg.edit_text("❌ download failed.")
                  return
             
-            await status_msg.edit_text("<i>⚙️ processing pdf...</i>", parse_mode=enums.ParseMode.html)
+            await status_msg.edit_text("<i>⚙️ processing pdf...</i>", parse_mode=enums.ParseMode.HTML)
             
             file_type = await Seishiro.get_config("file_type", "pdf")
             quality = await Seishiro.get_config("image_quality")
@@ -386,7 +386,7 @@ async def execute_download(client, target_chat_id, source, manga_id, chapter_id,
                  await status_msg.edit_text("❌ failed to create file.")
                  return
             
-            await status_msg.edit_text(f"<i>⬆ uploading...</i>", parse_mode=enums.ParseMode.html)
+            await status_msg.edit_text(f"<i>⬆ uploading...</i>", parse_mode=enums.ParseMode.HTML)
             caption = f"<b>{meta['manga_title']} - Ch {meta['chapter']}</b>"
             
             await client.send_document(
