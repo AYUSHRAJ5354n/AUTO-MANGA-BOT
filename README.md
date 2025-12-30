@@ -80,7 +80,7 @@ A huge thanks to the developers who made this project possible:
 
 <div align="center">
 
-| [**Abhi**](https://github.com/abhinai2244) | [**Abhinav**](https://github.com/) | [**Master**]() |
+| [**Abhi**](https://t.me/about_zani) | [**Abhinav**](https://t.me/adityaabhinav) | [**Master**](https://t.me/V_Sbotmaker) |
 | :---: | :---: | :---: | :---: |
 | Owner | Developer | Developer |
 
